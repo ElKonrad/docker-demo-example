@@ -20,6 +20,7 @@ public class OffersResource {
     private static final String LUBLIN_CITY = "Lublin";
     private static final String DOCKERCLOUD_CONTAINER_HOSTNAME = "DOCKERCLOUD_CONTAINER_HOSTNAME";
     private static final String PLATFORM_ENV = "platform";
+    private static final String JOBS_EMAIL = "jobs@example.com";
     private final OffersService offersService;
 
     public OffersResource(OffersService offersService) {
@@ -33,6 +34,7 @@ public class OffersResource {
                         .platform(System.getenv(PLATFORM_ENV))
                         .container(getContainerNameEnv())
                         .city(LUBLIN_CITY)
+                        .email(JOBS_EMAIL)
                         .jobOffers(offersService.openOffers())
                         .build(),
                 HttpStatus.OK

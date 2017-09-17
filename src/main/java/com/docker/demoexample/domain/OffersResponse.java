@@ -15,5 +15,6 @@ public class OffersResponse {
     String platform;
     String container;
     String city;
+    String email;
     List<JobOffer> jobOffers;
 }
