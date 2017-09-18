@@ -1,5 +1,6 @@
 package com.docker.demoexample.rest;
 
+import com.docker.demoexample.domain.JobOffer;
 import com.docker.demoexample.domain.OffersResponse;
 import com.docker.demoexample.service.OffersService;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -29,13 +31,15 @@ public class OffersResource {
 
     @GetMapping
     public ResponseEntity<OffersResponse> offers() {
+        List<JobOffer> jobsOffers = offersService.openOffers();
         return new ResponseEntity<>(
                 OffersResponse.builder()
                         .platform(System.getenv(PLATFORM_ENV))
                         .container(getContainerNameEnv())
                         .city(LUBLIN_CITY)
                         .email(JOBS_EMAIL)
-                        .jobOffers(offersService.openOffers())
+                        .count(jobsOffers.size())
+                        .jobOffers(jobsOffers)
                         .build(),
                 HttpStatus.OK
         );

@@ -17,4 +17,5 @@ public class OffersResponse {
     String city;
     String email;
     List<JobOffer> jobOffers;
+    Integer count;
 }
